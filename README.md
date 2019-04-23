@@ -1,5 +1,11 @@
 # Snippet
 
+## Install
+
+npm i rdf-snippet
+
+## Functions
+
 - getSpecifiedObjectValue
 - handleError
 - isHostMethod

@@ -1,5 +1,32 @@
 {
   /**
+   * 判断空对象
+   */
+  function isEmptyObject(object = {}) {
+
+    if (object instanceof Object)
+
+    let names = [];
+
+    if (Object.getOwnPropertyNames) {
+      // IE9+
+      names = Object.getOwnPropertyNames(object);
+    } else {
+      // IE8+
+      for (const key in object) {
+        names.push(key);
+      }
+    }
+
+    return names.length === 0 ? true : false;
+
+  }
+
+  console.log([1].getOwnPropertyNames());
+  
+}
+{
+  /**
    * Array 添加 indexOf 方法
    * Array.indexOf 是 ES5 新增的，不兼容 IE8
    * 所以需要重写以兼容 IE8
@@ -14,7 +41,8 @@
           from += len;
         }
         for (; from < len; from++) {
-          if (from in this && this[from] === elt) { // in 操作符判断数组是否含有该索引
+          if (from in this && this[from] === elt) {
+            // in 操作符判断数组是否含有该索引
             return from;
           }
         }
@@ -179,7 +207,7 @@
   /**
    * 显示当前时间
    */
-  function showtime() {
+  function showTime() {
     console.log(new Date().toLocaleTimeString());
     setInterval(function() {
       const date = new Date();
@@ -191,12 +219,11 @@
   /**
    * 计秒倒计时
    */
-  function countdown() {
-    let starttime = 10;
-    console.log(starttime--);
+  function countDownBySecond(start = 10) {
+    console.log(start--);
     let timer = setInterval(function() {
-      if (starttime >= 0) {
-        console.log(starttime--);
+      if (start >= 0) {
+        console.log(start--);
       } else {
         console.log("倒计时完啦！");
         clearInterval(timer); // 清除计时器
@@ -207,11 +234,11 @@
 {
   /**
    * 日期倒计时
+   * 1861891199：2028-12-31 23:59:59
    */
-  function countdown() {
+  function countDownByDate(endTime = 1861891199) {
     setInterval(function() {
       const now = parseInt(new Date().getTime() / 1000);
-      const endTime = 1861891199; // 2028-12-31 23:59:59
       const endTimeLocale = new Date(endTime * 1000).toLocaleString();
       // 各持续时间字段
       let duringTimes = endTime - now < 0 ? 0 : endTime - now;
@@ -307,27 +334,6 @@
 }
 {
   /**
-   * 活动配置秒杀时，会将秒杀商品的数据输出在页面上，由前端自行获取处理。
-   * 现在想在一堆数据中取出每次秒杀的开始时间，并格式化输出。
-   * @param {String} str
-   */
-  function matchTime(str) {
-    const reg = /"type":"1","start_time":"(\d+)"/g;
-    const sub_reg = /"start_time":"(\d+)"/;
-    const arr = str.match(reg);
-    const arr_format = arr.map(item => {
-      return sub_reg.exec(item)[1] * 1000;
-    });
-
-    return arr_format;
-  }
-
-  // const str = `var acData={"activity_mddh_status":"0","activity_anchor_info":false,"list":[]};var commonData={"piAlias":"ac201506","domain":"sale.kinhom.com","now":1470015036,"check":0,"continued":0,"start_time":"1469980800","end_time":"1472659199","login":1,"miaosha":[{"pro_id":"2153","type":"1","start_time":"1470016800","end_time":"1470067199","useable":"3","sku":[{"sku_id":"7807","pro_id":"2153","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"2209.00"},{"sku_id":"57743","pro_id":"2153","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"6596.00"}]},{"pro_id":"2156","type":"1","start_time":"1470103200","end_time":"1470153599","useable":"3","sku":[{"sku_id":"7807","pro_id":"2156","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"2209.00"},{"sku_id":"57743","pro_id":"2156","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"6596.00"}]},{"pro_id":"2159","type":"1","start_time":"1470189600","end_time":"1470239999","useable":"3","sku":[{"sku_id":"7807","pro_id":"2159","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"2209.00"},{"sku_id":"57743","pro_id":"2159","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"6596.00"}]},{"pro_id":"2162","type":"1","start_time":"1470276000","end_time":"1470326399","useable":"3","sku":[{"sku_id":"7807","pro_id":"2162","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"2209.00"},{"sku_id":"57743","pro_id":"2162","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"6596.00"}]},{"pro_id":"2165","type":"1","start_time":"1470362400","end_time":"1470412799","useable":"3","sku":[{"sku_id":"7807","pro_id":"2165","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"2209.00"},{"sku_id":"57743","pro_id":"2165","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"6596.00"}]},{"pro_id":"2168","type":"1","start_time":"1470448800","end_time":"1470499199","useable":"3","sku":[{"sku_id":"7807","pro_id":"2168","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"2209.00"},{"sku_id":"57743","pro_id":"2168","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"6596.00"}]},{"pro_id":"2171","type":"1","start_time":"1470535200","end_time":"1470585599","useable":"3","sku":[{"sku_id":"7807","pro_id":"2171","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"2209.00"},{"sku_id":"57743","pro_id":"2171","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"6596.00"}]},{"pro_id":"2174","type":"1","start_time":"1470621600","end_time":"1470671999","useable":"3","sku":[{"sku_id":"7807","pro_id":"2174","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"2209.00"},{"sku_id":"57743","pro_id":"2174","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"6596.00"}]},{"pro_id":"2177","type":"1","start_time":"1470708000","end_time":"1470758399","useable":"3","sku":[{"sku_id":"7807","pro_id":"2177","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"2209.00"},{"sku_id":"57743","pro_id":"2177","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"6596.00"}]},{"pro_id":"2180","type":"1","start_time":"1470794400","end_time":"1470844799","useable":"3","sku":[{"sku_id":"7807","pro_id":"2180","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"2209.00"},{"sku_id":"57743","pro_id":"2180","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"6596.00"}]},{"pro_id":"2183","type":"1","start_time":"1470880800","end_time":"1470931199","useable":"3","sku":[{"sku_id":"7807","pro_id":"2183","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"2209.00"},{"sku_id":"57743","pro_id":"2183","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"6596.00"}]},{"pro_id":"2186","type":"1","start_time":"1470967200","end_time":"1471017599","useable":"3","sku":[{"sku_id":"7807","pro_id":"2186","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"2209.00"},{"sku_id":"57743","pro_id":"2186","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"6596.00"}]},{"pro_id":"2189","type":"1","start_time":"1471053600","end_time":"1471103999","useable":"3","sku":[{"sku_id":"7807","pro_id":"2189","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"2209.00"},{"sku_id":"57743","pro_id":"2189","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"6596.00"}]},{"pro_id":"2192","type":"1","start_time":"1471140000","end_time":"1471190399","useable":"3","sku":[{"sku_id":"7807","pro_id":"2192","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"2209.00"},{"sku_id":"57743","pro_id":"2192","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"6596.00"}]},{"pro_id":"2195","type":"1","start_time":"1471226400","end_time":"1471276799","useable":"3","sku":[{"sku_id":"7807","pro_id":"2195","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"2209.00"},{"sku_id":"57743","pro_id":"2195","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"6596.00"}]},{"pro_id":"2198","type":"1","start_time":"1471312800","end_time":"1471363199","useable":"3","sku":[{"sku_id":"7807","pro_id":"2198","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"2209.00"},{"sku_id":"57743","pro_id":"2198","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"6596.00"}]},{"pro_id":"2201","type":"1","start_time":"1471399200","end_time":"1471449599","useable":"3","sku":[{"sku_id":"7807","pro_id":"2201","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"2209.00"},{"sku_id":"57743","pro_id":"2201","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"6596.00"}]},{"pro_id":"2204","type":"1","start_time":"1471485600","end_time":"1471535999","useable":"3","sku":[{"sku_id":"7807","pro_id":"2204","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"2209.00"},{"sku_id":"57743","pro_id":"2204","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"6596.00"}]},{"pro_id":"2207","type":"1","start_time":"1471572000","end_time":"1471622399","useable":"3","sku":[{"sku_id":"7807","pro_id":"2207","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"2209.00"},{"sku_id":"57743","pro_id":"2207","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"6596.00"}]},{"pro_id":"2210","type":"1","start_time":"1471658400","end_time":"1471708799","useable":"3","sku":[{"sku_id":"7807","pro_id":"2210","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"2209.00"},{"sku_id":"57743","pro_id":"2210","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"6596.00"}]},{"pro_id":"2213","type":"1","start_time":"1471744800","end_time":"1471795199","useable":"3","sku":[{"sku_id":"7807","pro_id":"2213","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"2209.00"},{"sku_id":"57743","pro_id":"2213","pro_price":"1.00","pro_num":"10","sales_volume":"0","sku_des":"0","type":"1","sort":"0","v_sale":"10","title":"","store_price":"6596.00"}]}]};var activityBg="http://img1.jjcdn.com//g1/M00/04/5C/CvoBNFed0ZqAC8amAAwARsH8OoQ155.jpg";`;
-
-  // matchTime(str);
-}
-{
-  /**
    * 增加指定 URL 参数
    * @param {String} url
    * @param {String} name
@@ -346,26 +352,23 @@
 }
 {
   /**
-   * 查询指定 URL 参数
+   * 查询 URL 参数
    * @param {String} url 链接
    * @param {String} name 参数key
    */
   function getUrlParam(url, name) {
-    if (typeof name === "string" || typeof name === "number") {
+    if (typeof url !== 'string') {
+      return;
+    }
+    if (!name) {
+      return url.match(/(\?.+)/g)[0]
+        .slice(1)
+        .split("&")
+        .map(item => decodeURIComponent(item));
+    } else if (typeof name === "string" || typeof name === "number") {
       const value = url.match(new RegExp(`[\?\&]${name}=([^\&]*)(\&?)`, "i"));
       return value ? decodeURIComponent(value[1]) : "";
     }
-  }
-}
-{
-  /**
-   * 查询所有 URL 参数
-   */
-  function getUrlParamAll() {
-    return location.search
-      .slice(1)
-      .split("&")
-      .map(item => decodeURIComponent(item));
   }
 }
 {

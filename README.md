@@ -6,6 +6,7 @@ npm i rdf-snippet
 
 ## Functions
 
+- indexOf
 - getSpecifiedObjectValue
 - handleError
 - isHostMethod

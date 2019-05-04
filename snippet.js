@@ -390,5 +390,40 @@
     html.style.fontSize = clientWidth * (maxSize / uiWidth) + "px";
   }
 }
+{
+  /**
+   * 浅拷贝
+   * 没有考虑子项是对象的情况
+   */
+  const shallowCopy = (obj) => {
+    // 只拷贝数组和对象
+    if (typeof obj !== 'object') return;
+    // 区分数组和对象
+    let newObj = obj instanceof Array ? [] : {};
+    for (let key in obj) {
+      // 深浅拷贝区别在这里，深拷贝需要递归
+      newObj[key] = obj[key];
+    }
+    return newObj;
+  }
+}
+{
+  /**
+   * 深拷贝
+   * 有考虑子项是对象的情况
+   * 在浅拷贝的基础上使用递归
+   */
+  const deepCopy = (obj) => {
+    // 只拷贝数组和对象
+    if (typeof obj !== 'object') return;
+    // 区分数组和对象
+    let newObj = obj instanceof Array ? [] : {};
+    for (let key in obj) {
+      // 深浅拷贝区别在这里，深拷贝需要递归
+      newObj[key] = typeof obj[key] === 'object' ? deepCopy(obj[key]) : obj[key];
+    }
+    return newObj;
+  }
+}
 
 module.exports = { getRandom, getUrlParam };

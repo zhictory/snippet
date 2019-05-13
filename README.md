@@ -23,3 +23,5 @@ npm i rdf-snippet
 - addUrlParam 增加指定 URL 参数
 - getUrlParam 查询 URL 参数
 - setRem 使用 rem
+- hexToRGB 16 进制颜色值转 RGB
+- RGBToHex RGB 颜色转 16 进制颜色

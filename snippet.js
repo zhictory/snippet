@@ -441,7 +441,7 @@
 }
 {
   /**
-   * RGB颜色转16进制颜色
+   * RGB 颜色转 16 进制颜色
    * @param  {String} rgb RGB进制颜色字符串
    * @return {String}     16进制颜色字符串
    */

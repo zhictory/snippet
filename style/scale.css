@@ -1,0 +1,13 @@
+/* scale 防止抖动 */
+
+div {
+  /* chrome下会抖动，IE下会抖动 */
+  transform: scale(1.1);
+  transition: transform 1s ease;
+}
+
+div {
+  /* chrome和Firefox下不会抖动，IE会抖动 */
+  transform: scale(1.13);
+  transition: transform 1s ease;
+}

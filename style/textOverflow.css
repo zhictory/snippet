@@ -1,0 +1,7 @@
+/* 单行文本末显示省略号 */
+
+div {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

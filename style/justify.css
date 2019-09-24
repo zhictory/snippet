@@ -1,0 +1,13 @@
+/* 文本两端对齐 */
+
+div {
+  /* 主流浏览器 */
+  text-align: justify;
+}
+
+div {
+  /* IE */
+  text-align: justify;
+  text-justify: inter-ideograph;
+  /* text-justify 只支持 IE */
+}

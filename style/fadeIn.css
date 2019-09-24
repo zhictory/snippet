@@ -1,0 +1,10 @@
+/* 颜色淡入 */
+
+a {
+  color: #000;
+  transition: color 0.5s linear;
+}
+
+a:hover {
+  color: #f60;
+}

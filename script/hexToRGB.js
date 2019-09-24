@@ -3,7 +3,7 @@
  * @param {String} hex 16进制颜色字符串
  * @return {String} RGB颜色字符串
  */
-function hexToRGB(hex) {
+function HEXToRGB(hex) {
   var hexx = hex.replace("#", "0x");
   var r = hexx >> 16;
   var g = (hexx >> 8) & 0xff;

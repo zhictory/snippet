@@ -10,10 +10,8 @@ npm i rdf-snippet
 - getSpecifiedObjectValue 查找指定位置的健值
 - handleError 一个错误处理函数和测试案例的代码
 - isHostMethod 浏览器能力检测
-- log console.log（兼容处理）
-- getRandom 获取某个范围的随机数
-- deRepeat deRepeat
-- add 递归和等差数列加法
+- recursiveAdd 递归加法
+- equalDiffSeries 等差数列
 - bigNum 大数阶乘
 - getLines 单词折行算法（canvas）
 - showTime 显示当前时间
@@ -23,5 +21,6 @@ npm i rdf-snippet
 - addUrlParam 增加指定 URL 参数
 - getUrlParam 查询 URL 参数
 - setRem 使用 rem
-- hexToRGB 16 进制颜色值转 RGB
-- RGBToHex RGB 颜色转 16 进制颜色
+- HEXToRGB 16 进制颜色值转 RGB
+- RGBToHEX RGB 颜色转 16 进制颜色
+- simpleCopy 简单拷贝原理

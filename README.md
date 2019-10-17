@@ -1,9 +1,5 @@
 # Snippet
 
-## Install
-
-npm i rdf-snippet
-
 ## Functions
 
 - indexOf 重写 indexOf（兼容 IE8）
@@ -24,3 +20,21 @@ npm i rdf-snippet
 - HEXToRGB 16 进制颜色值转 RGB
 - RGBToHEX RGB 颜色转 16 进制颜色
 - simpleCopy 简单拷贝原理
+
+## Install
+
+npm i rdf-snippet
+
+## Import
+
+```html
+<script src="https://cdn.jsdelivr.net/gh/zhictory/snippet/script/indexOf.js"></script>
+```
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhictory/snippet/style/boxOverflow.css" />
+```
+
+```shell
+npm i snippet
+```

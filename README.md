@@ -34,7 +34,3 @@ npm i rdf-snippet
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhictory/snippet/style/boxOverflow.css" />
 ```
-
-```shell
-npm i snippet
-```

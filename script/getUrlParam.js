@@ -18,3 +18,5 @@ function getUrlParam(url, name) {
     return value ? decodeURIComponent(value[1]) : "";
   }
 }
+
+module.exports = getUrlParam;
